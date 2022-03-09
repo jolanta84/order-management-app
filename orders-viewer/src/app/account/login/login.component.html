@@ -1,0 +1,23 @@
+<div class="login-container">
+  <mat-toolbar color="primary">Logowanie</mat-toolbar>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <input type="email" matInput placeholder="Email" formControlName="email" required />
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+             <input type="password" matInput placeholder="Hasło" formControlName="password" required />
+          <mat-icon matSuffix>vpn_key</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">
+          Logowanie
+        </button>
+        <button mat-raised-button color="primary" routerLink="../register">
+          Rejestracja
+        </button>
+      </form>
+    </mat-card-content></mat-card
+  >
+</div>
