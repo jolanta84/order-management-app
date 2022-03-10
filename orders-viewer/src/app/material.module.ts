@@ -5,7 +5,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const modules = [
   MatCardModule,
@@ -13,9 +15,9 @@ const modules = [
   MatButtonModule,
   MatFormFieldModule,
   MatIconModule,
-  MatToolbarModule
-
-
+  MatToolbarModule,
+  MatTableModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({
