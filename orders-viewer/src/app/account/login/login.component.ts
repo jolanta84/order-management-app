@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -12,5 +15,24 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  onSubmit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService
+  ) {}
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  onSubmit() {
+
+    this.accountService
+      .login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['../orders'], { relativeTo: this.route });
+        },
+      });
+  }
 }

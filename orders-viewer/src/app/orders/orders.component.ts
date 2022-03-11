@@ -139,7 +139,7 @@ export class OrdersComponent implements OnInit {
   displayedColumns: string[] = ['name', 'status', 'createdAt', 'boxesCount']
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   statuses =['Open', 'Closed', 'In transit'];
-form = new FormGroup({
+  form = new FormGroup({
 
     status: new FormControl()});
 

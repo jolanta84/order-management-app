@@ -9,6 +9,9 @@ import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './account/register/register.component';
 import { OrdersComponent } from './orders/orders.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { fakeBackendProvider } from './_helpers/fake-backend';
+import { JwtInterceptor} from './_helpers/jwt.interceptor';
 
 
 @NgModule({
@@ -23,9 +26,12 @@ import { OrdersComponent } from './orders/orders.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+   
+    fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
