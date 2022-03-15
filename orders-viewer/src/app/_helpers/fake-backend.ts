@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 import {
   HttpRequest,
   HttpResponse,
@@ -41,7 +41,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const user = users.find(
         (x) => x.email === email && x.password === password
       );
-      if (!user) return error('Email or password is incorrect');
+      if (!user) return error('Wrong user and/or password. Try again.');
       return ok({
         ...basicDetails(user),
         token: 'fake-jwt-token',
@@ -51,8 +51,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function register() {
       const user = body;
 
+      if (!user.email || !user.password || !user.name) {
+        return error('Form data incomplete. Please try again.');
+      }
+
       if (users.find((x) => x.email === user.email)) {
-        return error('Email"' + user.email + '" is already taken');
+        return error('This account already exists.');
       }
 
       user.id = users.length ? Math.max(...users.map((x) => x.id)) + 1 : 1;

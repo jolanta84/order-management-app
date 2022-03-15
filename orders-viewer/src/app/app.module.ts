@@ -11,15 +11,17 @@ import { RegisterComponent } from './account/register/register.component';
 import { OrdersComponent } from './orders/orders.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { fakeBackendProvider } from './_helpers/fake-backend';
-import { JwtInterceptor} from './_helpers/jwt.interceptor';
-
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    OrdersComponent
+    OrdersComponent,
+    SnackBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,11 +29,13 @@ import { JwtInterceptor} from './_helpers/jwt.interceptor';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-   
-    fakeBackendProvider],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
