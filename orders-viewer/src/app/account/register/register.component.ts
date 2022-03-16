@@ -13,8 +13,11 @@ import { SnackBarService } from 'src/app/_services/snack-bar.service';
 export class RegisterComponent {
   registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl(''),
+    email: new FormControl('',  Validators.compose([
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+    ])),
+    password: new FormControl('', Validators.required),
   });
 
   constructor(
@@ -23,6 +26,10 @@ export class RegisterComponent {
     private accountService: AccountService,
     private snackBarService: SnackBarService
   ) {}
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.registerForm.controls[controlName].hasError(errorName);
+  };
 
   register() {
     this.accountService

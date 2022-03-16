@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
@@ -11,10 +11,9 @@ import { SnackBarService } from 'src/app/_services/snack-bar.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
- ;
   loginForm: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
 
   constructor(
@@ -24,15 +23,14 @@ export class LoginComponent {
     private snackBarService: SnackBarService
   ) {}
 
-  ngOninit(){
-
-  }
+  public hasError = (controlName: string, errorName: string) => {
+    return this.loginForm.controls[controlName].hasError(errorName);
+  };
   get f() {
     return this.loginForm.controls;
   }
 
   onSubmit() {
-  
     this.accountService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())

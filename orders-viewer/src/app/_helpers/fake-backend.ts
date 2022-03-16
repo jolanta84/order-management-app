@@ -55,6 +55,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return error('Form data incomplete. Please try again.');
       }
 
+      let regexEmail = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
+      if (!regexEmail.test(user.email)){
+        return error('Invalid email address format.');
+      }
+
       if (users.find((x) => x.email === user.email)) {
         return error('This account already exists.');
       }

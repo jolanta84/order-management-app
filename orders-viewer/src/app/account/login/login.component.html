@@ -4,19 +4,32 @@
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
-          <input type="email" matInput placeholder="Email" formControlName="email" required />
+          <input
+            type="email"
+            matInput
+            placeholder="Email"
+            formControlName="email"
+          />
           <mat-icon matSuffix>email</mat-icon>
-          
+          <mat-error *ngIf="hasError('email', 'required')"
+            >Podaj adres e-mail</mat-error
+          >
         </mat-form-field>
         <mat-form-field appearance="outline">
-             <input type="password" matInput placeholder="Hasło" formControlName="password" required />
+          <input
+            type="password"
+            matInput
+            placeholder="Hasło"
+            formControlName="password"
+          />
           <mat-icon matSuffix>vpn_key</mat-icon>
+          <mat-error *ngIf="hasError('password', 'required')">Podaj hasło</mat-error>
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">
-          Logowanie
+          Zaloguj się
         </button>
-        <button mat-raised-button color="primary" routerLink="../register">
-          Rejestracja
+        <button mat-stroked-button color="primary" routerLink="../register">
+          Zarejestruj się
         </button>
       </form>
     </mat-card-content></mat-card

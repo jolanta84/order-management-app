@@ -14,6 +14,7 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
     RegisterComponent,
     OrdersComponent,
     SnackBarComponent,
+    NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
