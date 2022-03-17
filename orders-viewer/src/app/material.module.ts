@@ -25,7 +25,12 @@ const modules = [
   MatSnackBarModule,
   MatMenuModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
 ];
 
 @NgModule({

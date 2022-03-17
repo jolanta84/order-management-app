@@ -15,6 +15,8 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     SnackBarComponent,
     NavbarComponent,
 
+
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    LayoutModule,
+       FlexLayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
