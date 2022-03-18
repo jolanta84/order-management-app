@@ -1,4 +1,4 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpResponse,
@@ -36,6 +36,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
     }
 
+    // route functions
+
     function authenticate() {
       const { email, password } = body;
       const user = users.find(
@@ -55,8 +57,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return error('Form data incomplete. Please try again.');
       }
 
-      let regexEmail = new RegExp('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
-      if (!regexEmail.test(user.email)){
+      let regexEmail = new RegExp(
+        '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'
+      );
+      if (!regexEmail.test(user.email)) {
         return error('Invalid email address format.');
       }
 
@@ -74,6 +78,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (!isLoggedIn()) return unauthorized();
       return ok(users.map((x) => basicDetails(x)));
     }
+
+    // helper functions
 
     function ok(body?: any) {
       return of(new HttpResponse({ status: 200, body })).pipe(delay(500));
@@ -106,6 +112,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 }
 
 export const fakeBackendProvider = {
+  // use fake backend in place of Http service for backend-less development
   provide: HTTP_INTERCEPTORS,
   useClass: FakeBackendInterceptor,
   multi: true,

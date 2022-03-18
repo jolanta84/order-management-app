@@ -1,29 +1,28 @@
+h1 {
+  text-align: center;
+}
+
 .mat-table {
   display: table;
   width: 100%;
   vertical-align: middle;
 
-  th {
-        color: primary;
-  }
 }
 
 .container-order {
-  margin: 30px;
-}
-
-h1 {
-  text-align: center;
+  margin: 2rem;
 }
 
 .order-checkbox {
-  margin: 5px;
+  margin: 0.5rem;
 }
 
-.mat-row:nth-child(even){
+.mat-row:nth-child(even) {
   background-color: #e4f0ec;
-  }
+}
 
-.mat-row:nth-child(odd){
-  background-color:#ffffff;
-  }
+.mat-row:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+

@@ -11,12 +11,15 @@ import { SnackBarService } from 'src/app/_services/snack-bar.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  registerForm: FormGroup = new FormGroup({
+  public registerForm: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('',  Validators.compose([
-      Validators.required,
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    ])),
+    email: new FormControl(
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+      ])
+    ),
     password: new FormControl('', Validators.required),
   });
 
@@ -31,7 +34,7 @@ export class RegisterComponent {
     return this.registerForm.controls[controlName].hasError(errorName);
   };
 
-  register() {
+  public register() {
     this.accountService
       .register(this.registerForm.value)
       .pipe(first())
@@ -40,7 +43,6 @@ export class RegisterComponent {
           this.router.navigate(['../login'], { relativeTo: this.route });
         },
         error: (error) => {
-          console.log(error);
           this.snackBarService.openSnackBar(error);
         },
       });

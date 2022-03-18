@@ -26,8 +26,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     OrdersComponent,
     SnackBarComponent,
     NavbarComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -37,7 +35,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     HttpClientModule,
     LayoutModule,
-       FlexLayoutModule,
+    FlexLayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

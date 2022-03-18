@@ -11,7 +11,7 @@ import { SnackBarService } from 'src/app/_services/snack-bar.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  loginForm: FormGroup = new FormGroup({
+  public loginForm: FormGroup = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
@@ -26,11 +26,13 @@ export class LoginComponent {
   public hasError = (controlName: string, errorName: string) => {
     return this.loginForm.controls[controlName].hasError(errorName);
   };
+
+  // convenience getter for easy access to form fields
   get f() {
     return this.loginForm.controls;
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.accountService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
@@ -39,7 +41,6 @@ export class LoginComponent {
           this.router.navigate(['../orders'], { relativeTo: this.route });
         },
         error: (error) => {
-          console.log(error);
           this.snackBarService.openSnackBar(error);
         },
       });

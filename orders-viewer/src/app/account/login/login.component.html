@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="form-container">
   <mat-toolbar color="primary">Logowanie</mat-toolbar>
   <mat-card>
     <mat-card-content>
@@ -23,7 +23,9 @@
             formControlName="password"
           />
           <mat-icon matSuffix>vpn_key</mat-icon>
-          <mat-error *ngIf="hasError('password', 'required')">Podaj hasło</mat-error>
+          <mat-error *ngIf="hasError('password', 'required')"
+            >Podaj hasło</mat-error
+          >
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit">
           Zaloguj się
