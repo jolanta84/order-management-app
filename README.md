@@ -1,8 +1,19 @@
-# staz-jpisulska
-
-# NAZWA PROJEKTU
+# Orders viewer
 
 ## Instrukcja uruchomienia projektu
+
+W celu uruchomienia aplikacji wymagane jest uruchomienie odpowiedniego API.
+
+W konsoli:
+
+$ npm run db 
+Przechodzimy do http://localhost:3000/ i API powinno się uruchomić.
+
+Aby uruchomić projekt należy:
+
+$ npm install
+$ ng serve 
+Przechodzimy do http://localhost:4200/ aby uruchomić aplikację. Po uruchomieniu wyświetla się strona logowania. 
 
 ## Opis modułów / funkcjonalności
 
