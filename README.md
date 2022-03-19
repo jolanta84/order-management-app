@@ -1,6 +1,12 @@
 # Orders viewer
 
-## Instrukcja uruchomienia projektu
+## Wersja opublikowana
+
+Opublikowana wersja aplikacji znajduje się pod adresem:
+
+https://jolanta84.github.io/
+
+## Instrukcja uruchomienia projektu (lokalnie)
 
 W celu uruchomienia aplikacji wymagane jest uruchomienie odpowiedniego API.
 
