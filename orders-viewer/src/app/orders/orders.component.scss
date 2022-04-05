@@ -24,4 +24,43 @@ h1 {
   background-color: #ffffff;
 }
 
+@media screen and (max-width: 768px) {
+  .mat-elevation-z8 {
+    background: transparent;
+  }
 
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-table {
+    background: transparent;
+
+    .mat-row {
+      display: block;
+      position: relative;
+      height: auto;
+      clear: both;
+      border-radius: 3px;
+
+      &:nth-child(even) {
+        background-color: #e4f0ec;
+      }
+
+      &:nth-child(odd) {
+        background-color: #ffffff;
+      }
+    }
+
+    .mat-cell {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 0 none;
+
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+}

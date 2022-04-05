@@ -40,41 +40,9 @@ export class OrdersComponent implements OnInit {
           (this.orders = orders), (this.dataSource.data = orders as Order[])
         )
       );
-
-    this.dataSource.filterPredicate = (
-      data: Order,
-      filter: string
-    ): boolean => {
-      const obj = JSON.parse(filter);
-      let find: boolean = obj.status;
-
-      return obj.status
-        ? (find = find && obj.status.indexOf(data.status) >= 0)
-        : true;
-    };
-
-    this.form.valueChanges.subscribe((res) => {
-      this.dataSource.filter = JSON.stringify(res);
-    });
   }
-  public isChecked(field: string, value: string) {
-    const control = this.form.get(field);
-    return control && control.value && control.value.indexOf(value) >= 0;
-  }
-
-  public change(list: any[], field: string, value: string, isChecked: boolean) {
-    const control = this.form.get(field);
-    const oldValue = control ? control.value || [] : [];
-    if (control) {
-      if (!isChecked) {
-        const newValue = oldValue.filter((x: string) => x != value);
-        control.setValue(newValue.length > 0 ? newValue : null);
-      } else {
-        const newValue = list.filter(
-          (x) => oldValue.indexOf(x) >= 0 || x == value
-        );
-        control.setValue(newValue);
-      }
-    }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
