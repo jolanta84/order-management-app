@@ -2,17 +2,24 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AccountService } from 'src/app/_services/account.service';
+import { AccountService } from 'src/app/_services/auth/auth.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
 })
-export class LoginComponent {
-  public loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', Validators.required),
+export class RegisterComponent {
+  public registerForm: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl(
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
+      ])
+    ),
     password: new FormControl('', Validators.required),
   });
 
@@ -24,21 +31,16 @@ export class LoginComponent {
   ) {}
 
   public hasError = (controlName: string, errorName: string) => {
-    return this.loginForm.controls[controlName].hasError(errorName);
+    return this.registerForm.controls[controlName].hasError(errorName);
   };
 
-  // convenience getter for easy access to form fields
-  get f() {
-    return this.loginForm.controls;
-  }
-
-  public onSubmit() {
+  public register() {
     this.accountService
-      .login(this.f.email.value, this.f.password.value)
+      .register(this.registerForm.value)
       .pipe(first())
       .subscribe({
         next: () => {
-          this.router.navigate(['../orders'], { relativeTo: this.route });
+          this.router.navigate(['../login'], { relativeTo: this.route });
         },
         error: (error) => {
           this.snackBarService.openSnackBar(error);

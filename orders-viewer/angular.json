@@ -27,7 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss", "src/orders-viewer-style.scss"],
+            "styles": ["src/styles.scss", "src/styles/orders-viewer-style.scss"],
             "scripts": []
           },
           "configurations": {
